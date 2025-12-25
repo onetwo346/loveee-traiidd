@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Discussion | Love Triad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="auth-styles.css?v=10">
+  <style>
+    .topic-view-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .topic-header-full {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(31, 27, 71, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .topic-breadcrumb {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .topic-breadcrumb a {
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .topic-header-full h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      color: var(--accent);
+      margin: 0 0 1rem;
+    }
+
+    .topic-author-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .author-details {
+      flex: 1;
+    }
+
+    .author-details strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .author-details p {
+      margin: 0.25rem 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .topic-content {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(31, 27, 71, 0.08);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .comments-section {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(31, 27, 71, 0.08);
+    }
+
+    .comments-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent-strong);
+    }
+
+    .comments-header h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .comment-form {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(31, 27, 71, 0.03);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .comment-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 3px rgba(183, 89, 92, 0.1);
+    }
+
+    .comment-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .comment-item:hover {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 12px rgba(31, 27, 71, 0.06);
+    }
+
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .comment-content {
+      flex: 1;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .comment-time {
+      font-size: 0.85rem;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .comment-text {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .comment-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .comment-action {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .comment-action:hover {
+      color: var(--accent-strong);
+    }
+
+    .new-comment-indicator {
+      display: inline-block;
+      background: var(--accent-strong);
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" id="header">
+      <div class="brand" onclick="window.location.href='Index.html'">Love Triad</div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="Index.html">Home</a></li>
+          <li><a href="Index.html#forums">Forums</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="topic-view-container">
+      <div class="topic-header-full">
+        <div class="topic-breadcrumb">
+          <a href="Index.html#forums">Forums</a> / <a href="#" id="forum-link">Spring House Forum</a> / <span id="topic-title-breadcrumb">Topic</span>
+        </div>
+        <h1 id="topic-title">Welcome to Spring House!</h1>
+        <div class="topic-author-info">
+          <div class="author-avatar" id="author-avatar">S</div>
+          <div class="author-details">
+            <strong id="author-name">Sarah M.</strong>
+            <p>Posted <span id="post-time">2 days ago</span> • <span id="view-count">156</span> views</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-content" id="topic-content">
+        <p>Introduce yourself and share what brought you to explore triadic living. What are your hopes and intentions for this journey?</p>
+        <p>I've been researching intentional relationships for years, and the concept of triads has always resonated with me. There's something powerful about the number three - it creates a dynamic that's both stable and transformative.</p>
+      </div>
+
+      <div class="comments-section">
+        <div class="comments-header">
+          <h3>Discussion (<span id="comment-count">12</span>)</h3>
+          <span style="font-size: 0.9rem; color: var(--muted);">💬 Real-time updates enabled</span>
+        </div>
+
+        <div class="comment-form">
+          <textarea id="new-comment" placeholder="Share your thoughts..."></textarea>
+          <button class="btn primary" onclick="postComment()">Post Comment</button>
+        </div>
+
+        <div id="comments-list">
+          <div class="comment-item">
+            <div class="comment-avatar">M</div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">Marcus T.</span>
+                <span class="comment-time">5 hours ago</span>
+              </div>
+              <p class="comment-text">
+                Welcome! I've been part of Spring House for about 6 months now. The journey has been transformative. The key is open communication and honoring each person's unique energy.
+              </p>
+              <div class="comment-actions">
+                <span class="comment-action">👍 <strong>8</strong> likes</span>
+                <span class="comment-action">💬 Reply</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-avatar">E</div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">Emma W.</span>
+                <span class="comment-time">1 day ago</span>
+              </div>
+              <p class="comment-text">
+                The balance of feminine and masculine energies in Spring House creates such a beautiful dynamic. My partners and I have found that weekly tending circles really help us stay aligned.
+              </p>
+              <div class="comment-actions">
+                <span class="comment-action">👍 <strong>12</strong> likes</span>
+                <span class="comment-action">💬 Reply</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-avatar">J</div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">James R.</span>
+                <span class="comment-time">2 days ago <span class="new-comment-indicator">NEW</span></span>
+              </div>
+              <p class="comment-text">
+                Just wanted to say how grateful I am for this community. Finding others who understand the power of three has been life-changing.
+              </p>
+              <div class="comment-actions">
+                <span class="comment-action">👍 <strong>15</strong> likes</span>
+                <span class="comment-action">💬 Reply</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <p>© LoveTriad.org · Designed for intentional complex relationships</p>
+    </footer>
+  </div>
+
+  <script src="script.js?v=10"></script>
+  <script>
+    // Check authentication
+    const user = JSON.parse(localStorage.getItem('lovetriad_user'));
+    if (!user) {
+      window.location.href = 'auth.html';
+    }
+
+    // Post comment function
+    function postComment() {
+      const commentText = document.getElementById('new-comment').value.trim();
+      
+      if (!commentText) {
+        alert('Please enter a comment');
+        return;
+      }
+
+      const comment = {
+        id: Date.now(),
+        author: user.name,
+        authorAvatar: user.name.charAt(0).toUpperCase(),
+        text: commentText,
+        timestamp: new Date().toISOString(),
+        likes: 0
+      };
+
+      // Add comment to list
+      const commentsList = document.getElementById('comments-list');
+      const commentHTML = `
+        <div class="comment-item">
+          <div class="comment-avatar">${comment.authorAvatar}</div>
+          <div class="comment-content">
+            <div class="comment-header">
+              <span class="comment-author">${comment.author}</span>
+              <span class="comment-time">Just now <span class="new-comment-indicator">NEW</span></span>
+            </div>
+            <p class="comment-text">${comment.text}</p>
+            <div class="comment-actions">
+              <span class="comment-action">👍 <strong>0</strong> likes</span>
+              <span class="comment-action">💬 Reply</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      commentsList.insertAdjacentHTML('afterbegin', commentHTML);
+
+      // Clear form
+      document.getElementById('new-comment').value = '';
+
+      // Update comment count
+      const currentCount = parseInt(document.getElementById('comment-count').textContent);
+      document.getElementById('comment-count').textContent = currentCount + 1;
+
+      // Update user stats
+      user.replies = (user.replies || 0) + 1;
+      localStorage.setItem('lovetriad_user', JSON.stringify(user));
+
+      // Scroll to new comment
+      commentsList.firstElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Simulate real-time updates
+    setInterval(() => {
+      // In a real app, this would check for new comments from the server
+      console.log('Checking for new comments...');
+    }, 5000);
+  </script>
+</body>
+</html>

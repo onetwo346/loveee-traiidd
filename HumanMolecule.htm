@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Triangles, Love Triad, Intentional Complex Relationship, Young Yang, Old Yang, Young Yin, Old Yin, The Human Molecule" />
+    <title>The Human Molecule | Love Triad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --accent: #1f1b47;
+        --accent-strong: #b7595c;
+        --muted: #453c5f;
+        --surface: #ffffff;
+        --border: rgba(31, 27, 71, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        background: radial-gradient(circle at top right, rgba(247, 225, 206, 0.8), transparent 45%),
+          radial-gradient(circle at 20% 20%, rgba(181, 89, 92, 0.35), transparent 55%), var(--bg);
+        color: var(--muted);
+        line-height: 1.8;
+        overflow-x: hidden;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .animate-in {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .animate-slide {
+        opacity: 0;
+        animation: slideIn 0.8s ease-out forwards;
+      }
+
+      .animate-delay-1 { animation-delay: 0.1s; }
+      .animate-delay-2 { animation-delay: 0.2s; }
+      .animate-delay-3 { animation-delay: 0.3s; }
+      .animate-delay-4 { animation-delay: 0.4s; }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page {
+        min-height: 100vh;
+        padding: 0 1.5rem 3rem;
+      }
+
+      header.site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        background: rgba(244, 239, 230, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      header.site-header.scrolled {
+        box-shadow: 0 4px 20px rgba(31, 27, 71, 0.08);
+        border-bottom-color: var(--border);
+      }
+
+      .brand {
+        font-family: "Playfair Display", serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .brand:hover {
+        color: var(--accent-strong);
+        transform: scale(1.05);
+      }
+
+      nav ul {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+      }
+
+      nav ul li a {
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      nav ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-strong);
+        transition: width 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-strong);
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .article-header {
+        text-align: center;
+        padding: 3rem 0 2rem;
+        border-bottom: 2px solid var(--accent-strong);
+        margin-bottom: 3rem;
+      }
+
+      .article-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        color: var(--accent);
+        margin: 0 0 1rem;
+        font-weight: 700;
+      }
+
+      .article-header .author {
+        font-size: 1.1rem;
+        color: var(--accent-strong);
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+
+      .article-header .date {
+        font-size: 0.95rem;
+        color: var(--muted);
+        opacity: 0.8;
+      }
+
+      .article-content {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 24px;
+        padding: 3rem;
+        box-shadow: 0 20px 60px rgba(31, 27, 71, 0.08);
+        border: 1px solid var(--border);
+      }
+
+      .article-content p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin: 1.5rem 0;
+        text-align: justify;
+        color: var(--muted);
+      }
+
+      .article-content p:first-of-type::first-letter {
+        font-size: 3.5rem;
+        font-family: "Playfair Display", serif;
+        float: left;
+        line-height: 0.9;
+        margin: 0.1rem 0.15rem 0 0;
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, rgba(183, 89, 92, 0.1), rgba(31, 27, 71, 0.05));
+        border-left: 4px solid var(--accent-strong);
+        padding: 1.5rem 2rem;
+        margin: 2rem 0;
+        border-radius: 12px;
+        font-style: italic;
+        transition: all 0.3s ease;
+      }
+
+      .highlight-box:hover {
+        transform: translateX(8px);
+        box-shadow: 0 10px 30px rgba(183, 89, 92, 0.15);
+      }
+
+      .cta-section {
+        margin-top: 3rem;
+        padding: 2.5rem;
+        background: linear-gradient(120deg, #b7595c, #1f1b47);
+        border-radius: 24px;
+        color: #fff;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        margin: 0 0 1rem;
+      }
+
+      .cta-section p {
+        margin: 1rem 0 2rem;
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.8rem;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn.primary {
+        background: #f9e0d4;
+        color: #1f1b47;
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(249, 224, 212, 0.4);
+      }
+
+      .btn.ghost {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+      }
+
+      .btn.ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+        border-color: #fff;
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--accent-strong);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(183, 89, 92, 0.4);
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(183, 89, 92, 0.5);
+      }
+
+      footer {
+        text-align: center;
+        padding: 3rem 0 2rem;
+        color: rgba(69, 60, 95, 0.6);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 0.75rem;
+        }
+
+        .article-content {
+          padding: 2rem 1.5rem;
+        }
+
+        .btn-group {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .scroll-to-top {
+          bottom: 1rem;
+          right: 1rem;
+          width: 45px;
+          height: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
+    <div class="page">
+      <header class="site-header" id="header">
+        <a href="Index.html" class="brand">Love Triad</a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="Index.html#houses">Houses</a></li>
+            <li><a href="Index.html#stories">Stories</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <article>
+          <header class="article-header animate-in">
+            <h1>The Human Molecule</h1>
+            <p class="author">Roland Stahl</p>
+            <p class="date">June 2018</p>
+          </header>
+
+          <div class="article-content">
+            <p class="animate-slide animate-delay-1">
+              The predominant form of the human molecule is two persons, more or less closely engaged. These are usually paired as active, or dominant, and passive, or submissive, although these roles may be played by persons of any variety of genders. Less common, but still binary forms, are pairs of either both active/dominant or both passive/submissive, again expressed by any combination of genders.
+            </p>
+
+            <p class="animate-slide animate-delay-2">
+              In addition, there is a large percentage of the population which is solitaire. Solitude is not healthy, except for short periods of time, and often leads to extreme expressions eventually diagnosed as madness. Solitude is often, perhaps even usually, a major factor in the etiology of deviant or criminal behavior of all kinds. All children should have strong bonds with their parents at first, and should be encouraged to form strong bonds with their friends as well (of both genders). Clear instruction in interpersonal dynamics would greatly facilitate the forming of social bonds.
+            </p>
+
+            <p class="animate-slide animate-delay-3">
+              Whenever people experience the ill effects of solitude leading to deviations in any direction (which are collectively precursors to madness), they should be provided with assistance in forming a close personal attachment with someone as soon as possible. Even children (especially children), when their life history has subjected them to long periods of solitude leading to any kind of erratic behavior, should be assisted to find a partner, as a primary therapeutic goal.
+            </p>
+
+            <div class="highlight-box animate-in animate-delay-4">
+              <p style="margin: 0;">
+                However, there is also a third variant of the human molecule, which is much less common than binaries or solitaires, and that is <strong>triads</strong>. Whenever three people make a bond together, the result is far more complex than either binaries or solitaires.
+              </p>
+            </div>
+
+            <p class="animate-slide animate-delay-4">
+              There are so many potential combinations of energies, without even considering gender variations. These are usually dynamic forms and are often vehicles of change. On the other hand, it is possible for three persons to form an intentional complex relationship which is intended to be stable rather than transitional. When such a group achieves stability, it can be very powerful. It isn't for everyone, but some people are just not comfortable in a one-on-one relationship, which often tends to get polarized on any number of dimensions. For these people, triads are a much better solution than solitaires; for them we offer lovetriad.org.
+            </p>
+
+            <p class="animate-slide animate-delay-4">
+              Some people may think that we are missing an opportunity – that we could arrange the categories of partners entirely according to their energy fields with no reference to any particular combination of genders which might fill those roles. But if we have elected to retain the gender designations as the more convenient alternative, we invite you to interpret those designations as creatively as you please. The options we suggest are only the beginning. When it comes time to design your own profile, you are encouraged freely to express yourselves and your desires with no creative limit.
+            </p>
+          </div>
+
+          <section class="cta-section animate-in">
+            <h2>Ready to Explore Triadic Living?</h2>
+            <p>Discover your house, connect with like-minded seekers, and build intentional relationships.</p>
+            <div class="btn-group">
+              <a href="Index.html#houses" class="btn primary">Explore the Houses</a>
+              <a href="Index.html" class="btn ghost">Return Home</a>
+            </div>
+          </section>
+        </article>
+      </main>
+
+      <footer>
+        <p>Love Triad · Celebrating intentional complex relationships since the mysteries of three.</p>
+        <p>© LoveTriad.org</p>
+      </footer>
+    </div>
+
+    <script>
+      const header = document.getElementById('header');
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          header.classList.remove('scrolled');
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+      
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = entry.target.classList.contains('animate-slide') 
+              ? 'translateX(0)' 
+              : 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.animate-in, .animate-slide').forEach(el => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
+
